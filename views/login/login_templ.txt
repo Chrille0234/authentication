@@ -1,0 +1,11 @@
+ 
+ <div id=\"response\"></div>
+<form class=\"flex flex-col gap-4 w-60\"
+>
+</form>
+<label class=\"flex flex-col text-sm\">
+ <input type=\"
+\" name=\"
+\" placeholder=\"
+\" class=\"border-b-gray-400 border-b-1 text-lg placeholder:font-medium\"></label>
+<button type=\"submit\" class=\"bg-blue-500 text-white rounded-md p-2\">Login</button>

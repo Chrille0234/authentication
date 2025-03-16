@@ -1,0 +1,9 @@
+.env
+node_modules/
+dist/
+build/
+tmp/
+db.sqlite3
+go.sum
+# The project uses Tailwindcss 4, but i have the file so my lsp will register that im using tailwind. FFS
+tailwind.config.js

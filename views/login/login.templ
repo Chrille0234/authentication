@@ -1,0 +1,32 @@
+package login
+
+import "github.com/chrille0234/auth/views/layout"
+
+templ Login() {
+    @layout.Layout("Login") {
+      @form(templ.Attributes{"hx-post": "api/login", "hx-swap": "innerHTML", "hx-target": "#response"}) {
+        @formInput("Email", "email", "email", "Email")
+        @formInput("Password", "password", "password", "Password")
+        
+        <div id="response"></div>
+        @formSubmitButton()
+      }
+    }
+}
+
+templ form(attrs templ.Attributes){
+  <form class="flex flex-col gap-4 w-60" {attrs...}>
+    {children...}
+  </form>
+}
+
+templ formInput(label, name, inputType, placeholder string) {
+  <label class="flex flex-col text-sm">
+    {label}
+    <input type={inputType} name={name} placeholder={placeholder} class="border-b-gray-400 border-b-1 text-lg placeholder:font-medium"/>
+  </label>
+}
+
+templ formSubmitButton() {
+  <button type="submit" class="bg-blue-500 text-white rounded-md p-2">Login</button>
+}
