@@ -42,7 +42,7 @@ func Layout(title string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</title><!-- Load libraries --><script src=\"https://unpkg.com/htmx.org@2.0.4\"></script><!-- Load css --><link rel=\"stylesheet\" href=\"/static/output.css\"></head><body id=\"app\"><nav class=\"flex gap-4\"><a href=\"/\">Home</a> <a href=\"/login\">Login</a> <a href=\"/profile\">Profile</a></nav>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</title><!-- Load libraries --><script src=\"https://unpkg.com/htmx.org@2.0.4\"></script><script src=\"https://unpkg.com/htmx-ext-preload@2.1.0\" integrity=\"sha384-fkzubQiTB69M7XTToqW6tplvxAOJkqPl5JmLAbumV2EacmuJb8xEP9KnJafk/rg8\" crossorigin=\"anonymous\"></script><!-- Load css --><link rel=\"stylesheet\" href=\"/static/output.css\"></head><body id=\"app\" hx-ext=\"preload\"><nav class=\"flex gap-4\"><a href=\"/\">Home</a> <a href=\"/login\">Login</a> <a href=\"/profile\">Profile</a></nav>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

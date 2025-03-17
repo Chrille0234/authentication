@@ -10,9 +10,9 @@
 </button>
  
  <div id=\"response\"></div>
- <button hx-get=\"/components/registerForm\" hx-target=\"#form\" hx-swap=\"outerHTML\">Register</button>
+ <button hx-get=\"/components/registerForm\" hx-target=\"#form\" hx-swap=\"outerHTML\" preload>Register</button>
  
  
  
  <div id=\"response\"></div>
- <button hx-get=\"/components/loginForm\" hx-target=\"#form\" hx-swap=\"outerHTML\">Have an account?</button>
+ <button hx-get=\"/components/loginForm\" hx-target=\"#form\" hx-swap=\"outerHTML\" preload>Have an account?</button>

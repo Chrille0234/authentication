@@ -32,7 +32,7 @@ templ LoginForm(){
       
       <div id="response"></div>
       @formSubmitButton("Login")
-    <button hx-get="/components/registerForm" hx-target="#form" hx-swap="outerHTML">Register</button>
+    <button hx-get="/components/registerForm" hx-target="#form" hx-swap="outerHTML" preload>Register</button>
     }
 }
 
@@ -45,6 +45,6 @@ templ RegisterForm() {
     
     <div id="response"></div>
     @formSubmitButton("Register")
-    <button hx-get="/components/loginForm" hx-target="#form" hx-swap="outerHTML">Have an account?</button>
+    <button hx-get="/components/loginForm" hx-target="#form" hx-swap="outerHTML" preload>Have an account?</button>
   }
 }

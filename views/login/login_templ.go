@@ -278,7 +278,7 @@ func LoginForm() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, " <button hx-get=\"/components/registerForm\" hx-target=\"#form\" hx-swap=\"outerHTML\">Register</button>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, " <button hx-get=\"/components/registerForm\" hx-target=\"#form\" hx-swap=\"outerHTML\" preload>Register</button>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -361,7 +361,7 @@ func RegisterForm() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, " <button hx-get=\"/components/loginForm\" hx-target=\"#form\" hx-swap=\"outerHTML\">Have an account?</button>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, " <button hx-get=\"/components/loginForm\" hx-target=\"#form\" hx-swap=\"outerHTML\" preload>Have an account?</button>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
