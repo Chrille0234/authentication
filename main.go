@@ -7,7 +7,6 @@ import (
 	"github.com/chrille0234/auth/views/index"
 	"github.com/chrille0234/auth/views/login"
 	"github.com/gin-gonic/gin"
-	"github.com/jmoiron/sqlx"
 	"github.com/joho/godotenv"
 )
 
@@ -47,38 +46,22 @@ func main() {
 	// API ROUTES
 	apiGroup := router.Group("/api")
 	{
-		apiGroup.POST("login", func(ctx *gin.Context) {
-			api.LoginHandler(ctx, db)
+		apiGroup.POST("login", api.LoginHandler(db))
+        apiGroup.POST("register", api.RegisterHandler(db))
+	}
+
+	// COMPONENT ROUTES
+	components := router.Group("/components")
+	{
+		components.GET("/loginForm", func(ctx *gin.Context) {
+			handler := templ.Handler(login.LoginForm())
+			handler.ServeHTTP(ctx.Writer, ctx.Request)
+		})
+
+		components.GET("/registerForm", func(ctx *gin.Context) {
+			handler := templ.Handler(login.RegisterForm())
+			handler.ServeHTTP(ctx.Writer, ctx.Request)
 		})
 	}
-	router.Run(":3000")
-}
-
-func AuthMiddleware(db *sqlx.DB) gin.HandlerFunc {
-	return func(ctx *gin.Context) {
-		cookie, err := ctx.Cookie("auth_token")
-
-		if err != nil {
-			ctx.Writer.Write([]byte("<script>window.location.href = '/login'</script>"))
-			ctx.AbortWithStatus(401)
-		}
-
-		isValid, err := database.AuthenticateToken(cookie)
-
-		if err != nil || !isValid {
-			ctx.Writer.Write([]byte("<script>window.location.href = '/login'</script>"))
-			ctx.AbortWithStatus(401)
-		}
-
-		user, err := database.GetUserFromToken(cookie, db)
-
-		if err != nil {
-			ctx.Writer.Write([]byte("<script>window.location.href = '/login'</script>"))
-			ctx.AbortWithStatus(401)
-		}
-
-		ctx.Set("user", user)
-
-		ctx.Next()
-	}
+	router.Run(":4000")
 }

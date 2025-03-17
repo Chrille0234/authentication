@@ -20,8 +20,8 @@ templ Layout(title string) {
       <a href="/login">Login</a>
       <a href="/profile">Profile</a>
     </nav>
-    {children...}
 
+    {children...}
 
     <script>
       document.addEventListener('htmx:afterRequest', (event) => {

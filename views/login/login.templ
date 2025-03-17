@@ -4,13 +4,7 @@ import "github.com/chrille0234/auth/views/layout"
 
 templ Login() {
     @layout.Layout("Login") {
-      @form(templ.Attributes{"hx-post": "api/login", "hx-swap": "innerHTML", "hx-target": "#response"}) {
-        @formInput("Email", "email", "email", "Email")
-        @formInput("Password", "password", "password", "Password")
-        
-        <div id="response"></div>
-        @formSubmitButton()
-      }
+      @LoginForm()
     }
 }
 
@@ -27,6 +21,30 @@ templ formInput(label, name, inputType, placeholder string) {
   </label>
 }
 
-templ formSubmitButton() {
-  <button type="submit" class="bg-blue-500 text-white rounded-md p-2">Login</button>
+templ formSubmitButton(text string) {
+  <button type="submit" class="bg-blue-500 text-white rounded-md p-2">{text}</button>
+}
+
+templ LoginForm(){
+    @form(templ.Attributes{"hx-post": "api/login", "hx-swap": "innerHTML", "hx-target": "#response", "id": "form"}){
+      @formInput("Email", "email", "email", "Email")
+      @formInput("Password", "password", "password", "Password")
+      
+      <div id="response"></div>
+      @formSubmitButton("Login")
+    <button hx-get="/components/registerForm" hx-target="#form" hx-swap="outerHTML">Register</button>
+    }
+}
+
+templ RegisterForm() {
+  @form(templ.Attributes{"hx-post": "api/register", "hx-swap": "innerHTML", "hx-target": "#response", "id": "form"}) {
+    @formInput("Email", "email", "email", "Email")
+    @formInput("First Name", "first_name", "text", "First Name")
+    @formInput("Last Name", "last_name", "text", "Last Name")
+    @formInput("Password", "password", "password", "Password")
+    
+    <div id="response"></div>
+    @formSubmitButton("Register")
+    <button hx-get="/components/loginForm" hx-target="#form" hx-swap="outerHTML">Have an account?</button>
+  }
 }

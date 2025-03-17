@@ -11,7 +11,8 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-func LoginHandler(ctx *gin.Context, db *sqlx.DB) {
+func LoginHandler(db *sqlx.DB) func(*gin.Context) {
+  return func(ctx *gin.Context) {
 	err := ctx.Request.ParseForm()
 
 	if err != nil {
@@ -39,6 +40,15 @@ func LoginHandler(ctx *gin.Context, db *sqlx.DB) {
 		return
 	}
 
+    createTokenAndSetCookie(db, email, ctx)
+
+	ctx.Header("HX-Redirect", "/profile")
+	ctx.Status(200)
+
+  }
+}
+
+func createTokenAndSetCookie(db *sqlx.DB, email string, ctx *gin.Context) {
 	expires := time.Now().Add(8 * time.Hour).Unix()
 	// expires is an int64, so we need to convert it to an int for the cookie
 	maxAge := int(time.Until(time.Unix(expires, 0)).Seconds())
@@ -56,7 +66,5 @@ func LoginHandler(ctx *gin.Context, db *sqlx.DB) {
 	database.SetTokenInDB(token, expires, user, db)
 
 	ctx.SetCookie("auth_token", token, maxAge, "/", "localhost", true, true)
-
-	ctx.Header("HX-Redirect", "/profile")
-	ctx.Status(200)
 }
+
